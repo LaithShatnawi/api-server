@@ -1,6 +1,8 @@
 'use strict';
 const express = require("express");
 const app = express();
+const notFoundHandler = require('./error-handlers/404');
+const errorHandler = require('./error-handlers/500');
 const clothesRouter = require('./routes/clothes.route');
 const foodRouter = require('./routes/food.route');
 
@@ -12,6 +14,10 @@ app.get('/', welcomeHandler);
 function welcomeHandler(req, res) {
     res.status(200).send('Hello World');
 }
+
+app.use('*', notFoundHandler);
+app.use(errorHandler);
+
 function start(port) {
     app.listen(port, () => {
         console.log(`server is up and listen on ${port}`)
