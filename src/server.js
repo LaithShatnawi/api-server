@@ -5,10 +5,14 @@ const notFoundHandler = require('./error-handlers/404');
 const errorHandler = require('./error-handlers/500');
 const clothesRouter = require('./routes/clothes.route');
 const foodRouter = require('./routes/food.route');
+const authorsRouter = require('./routes/authors.route');
+const booksRouter = require('./routes/books.route');
 
 app.use(express.json());
 app.use(clothesRouter);
 app.use(foodRouter);
+app.use(authorsRouter);
+app.use(booksRouter);
 
 app.get('/', welcomeHandler);
 function welcomeHandler(req, res) {
